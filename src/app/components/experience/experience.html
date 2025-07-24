@@ -1,4 +1,25 @@
-
 <div class="wrapper_main">
-    <p>experience works!</p>
+    @if(experiences$ | async; as experiences){
+        <div class="wrapper_experience">
+        @for(exp of experiences; track exp.name_experience){
+            <div class="content_experience">
+                <div class="wrapper_name_dates">
+                    <span class="name_exp">{{exp.name_experience}}</span>
+                    <div class="wrapper_dates">
+                        <span class="dates">
+                            {{formatDateToDDMMYYYY(exp.start_date_experience)}}
+                            -
+                            {{formatDateToDDMMYYYY(exp.end_date_experience)}}
+                        </span>
+                    </div>
+                </div>
+                <div class="wrapper_description">
+                    <span class="description">
+                        {{exp.description_experience}}
+                    </span>
+                </div>
+            </div>
+        }
+        </div>
+    }
 </div>
