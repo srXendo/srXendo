@@ -5,7 +5,7 @@
                 <button (click)="fileInput.click()" type="button" class="button_tool import" title="importar experiencias para visualizar"></button>
                 <input #fileInput type="file" accept=".json" style="display:none" (change)="onFileSelected($event)" />
 
-                <button (click)="export_experience()" type="button" class="button_tool export" title="exportar experiencias para usar mas adelante"></button>
+                <button title="ordena por fecha de inicio ascendente o descendente" (click)="export_experience()" type="button" class="button_tool export" title="exportar experiencias para usar mas adelante"></button>
             </div>
             <button (click)="order()" type="button" [ngClass]="{
                 'button_tool': true,
