@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ExperienceService } from './experience.service';
 import { ExperienceInterface } from './experience.interface';
-import { Observable, of } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 })
 export class Experience {
   experiences$: Observable<ExperienceInterface[]>
+  flag_order: boolean = true
   constructor(private experienceService: ExperienceService){
     this.experiences$ = this.experienceService.get_experiences()
   }
@@ -74,5 +75,18 @@ export class Experience {
     };
 
     reader.readAsText(file);
+  }
+  order(){
+    if(this.flag_order){
+      this.experiences$ = this.experiences$.pipe(
+        map(rows => [...rows].sort((a, b) => b.start_date_experience.getTime() - a.start_date_experience.getTime()))
+      );
+    }else{
+      this.experiences$ = this.experiences$.pipe(
+        map(rows => [...rows].sort((a, b) => a.start_date_experience.getTime() - b.start_date_experience.getTime()))
+      );      
+    }
+    this.flag_order = !this.flag_order
+
   }
 }

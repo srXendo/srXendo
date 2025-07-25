@@ -53,8 +53,11 @@
 .export{
     background-image: url(./../../../../public/export.svg);
 }
-.order{
-
+.ascending{
+    background-image: url(./../../../../public/ascending.svg);
+}
+.descending{ 
+    background-image: url(./../../../../public/descending.svg);
 }
 .content_experience{
     min-width: 340px;

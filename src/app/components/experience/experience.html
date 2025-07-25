@@ -7,7 +7,11 @@
 
                 <button (click)="export_experience()" type="button" class="button_tool export" title="exportar experiencias para usar mas adelante"></button>
             </div>
-            <button type="button" class="button_tool">Orden ascendente</button>
+            <button (click)="order()" type="button" [ngClass]="{
+                'button_tool': true,
+                'ascending': flag_order,
+                'descending': !flag_order
+            }"></button>
         </div>
     </div>
     @if(experiences$ | async; as experiences){
