@@ -1,4 +1,15 @@
 <div class="wrapper_main">
+    <div class="wrapper_tools">
+        <div class="wrapper_buttons">
+            <div class="wrapper_import_export">
+                <button (click)="fileInput.click()" type="button" class="button_tool import" title="importar experiencias para visualizar"></button>
+                <input #fileInput type="file" accept=".json" style="display:none" (change)="onFileSelected($event)" />
+
+                <button (click)="export_experience()" type="button" class="button_tool export" title="exportar experiencias para usar mas adelante"></button>
+            </div>
+            <button type="button" class="button_tool">Orden ascendente</button>
+        </div>
+    </div>
     @if(experiences$ | async; as experiences){
         <div class="wrapper_experience">
         @for(exp of experiences; track exp.name_experience){
