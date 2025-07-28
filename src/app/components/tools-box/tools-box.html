@@ -1,0 +1,17 @@
+<div class="wrapper_tools">
+    <div class="wrapper_buttons">
+        <div class="wrapper_import_export">
+            <button (click)="fileInput.click()" type="button" class="button_tool import" title="importar experiencias para visualizar"></button>
+            <input #fileInput type="file" accept=".json" style="display:none" (change)="onFileSelected($event)" />
+
+            <button (click)="export_experience()" type="button" class="button_tool export" title="exportar experiencias para usar mas adelante"></button>
+        </div>
+        @if(enable_order){
+            <button  title="ordena por fecha de inicio {{flag_order ? 'ascendente' : 'descendente'}}" (click)="order()" type="button" [ngClass]="{
+                'button_tool': true,
+                'ascending': flag_order,
+                'descending': !flag_order
+            }"></button>
+        }
+    </div>
+</div>

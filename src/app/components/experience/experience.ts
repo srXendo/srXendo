@@ -3,10 +3,12 @@ import { ExperienceService } from './experience.service';
 import { ExperienceInterface } from './experience.interface';
 import { map, Observable, of } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { ToolsBox } from "../tools-box/tools-box";
+import { IntroductionInterface } from '../introduction/introduction.interface';
 
 @Component({
   selector: 'app-experience',
-  imports: [CommonModule],
+  imports: [CommonModule, ToolsBox],
   templateUrl: './experience.html',
   styleUrl: './experience.css'
 })
@@ -22,71 +24,16 @@ export class Experience {
     const year = date.getFullYear();
     return `${day}/${month}/${year}`;
   }
-  import_experience(){
-    const input:string | null  = prompt('pega un json')
-    if(!input|| input == ''){
-      throw new Error('input de configuracion esta vacia') 
-    }
-    try{
-      this.experiences$ = of(JSON.parse(input))
-    }catch(err: any){
-      console.error(new Error(err))
-    }
-  }
-  export_experience(){
-    const sub = this.experiences$.subscribe({
-      next: (arr)=>{
-
-          const blob = new Blob([JSON.stringify(arr)], { type: 'application/json' });
-          const url = window.URL.createObjectURL(blob);
-
-          const link = document.createElement('a');
-          link.href = url;
-          link.download = 'configuracion.json';
-          link.click();
-
-          window.URL.revokeObjectURL(url);
-        sub.unsubscribe()
-      },
-      error: (err)=>{
-        
-      }
-    })
-  }
-  onFileSelected(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (!input.files?.length) return;
-
-    const file = input.files[0];
-    const reader = new FileReader();
-
-    reader.onload = () => {
-      try {
-        const res = JSON.parse(reader.result as string).map((row: ExperienceInterface)=>{
+  change_arr($event: ExperienceInterface[] | IntroductionInterface | null){
+    console.log($event)
+    if(Array.isArray($event)){
+      this.experiences$ = this.experiences$.pipe(map(arr=>$event.map((row: ExperienceInterface)=>{
           row.start_date_experience = new Date(row.start_date_experience)
           row.end_date_experience = new Date(row.end_date_experience)
           return row
 
-        })
-        this.experiences$ = of(res);
-      } catch (error) {
-       console.error(new Error('Error al leer el JSON: ' + (error as Error).message)) 
-      }
-    };
-
-    reader.readAsText(file);
-  }
-  order(){
-    if(this.flag_order){
-      this.experiences$ = this.experiences$.pipe(
-        map(rows => [...rows].sort((a, b) => b.start_date_experience.getTime() - a.start_date_experience.getTime()))
-      );
-    }else{
-      this.experiences$ = this.experiences$.pipe(
-        map(rows => [...rows].sort((a, b) => a.start_date_experience.getTime() - b.start_date_experience.getTime()))
-      );      
+        })))
     }
-    this.flag_order = !this.flag_order
-
   }
+
 }
