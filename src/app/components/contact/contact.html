@@ -1,1 +1,39 @@
-<p>contact works!</p>
+<div class="wrapper_main">
+    <app-tools-box [arr_elements]="[]" (arrChange)="change_arr($event)" [name_download]="'contact'"></app-tools-box>
+    <div class="img-btn-bar">
+        <div class="wrapper-img-btn"[class]="{
+            'wrapper-img-btn-active': false,
+            }">
+        <div
+            class="img-btn-base"
+            [class]="{
+            'img-btn': true,
+            'img-btn-active': false,
+            }"
+            [style]="getImgBoxStyle('linkedIn_2021.svg')"
+            href="www.linkedin.com/in/david-m-8483a4299"
+        >
+            
+        </div>
+            <span class="overlay-text"></span>
+        </div>
+        <div class="wrapper-img-btn"[class]="{
+            'wrapper-img-btn-active': false,
+            }">
+        <div
+            class="img-btn-base"
+            [class]="{
+            'img-btn': true,
+            'img-btn-active': false,
+            }"
+            [style]="getImgBoxStyle('github_2013.svg')"
+            routerLink="/matchmaker"
+        >
+            
+        </div>
+        <span class="overlay-text"></span>
+        </div>
+
+    </div>
+    
+</div>

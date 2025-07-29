@@ -5,6 +5,7 @@ import { ExperienceService } from '../experience/experience.service';
 import { CommonModule } from '@angular/common';
 import { IntroductionInterface } from '../introduction/introduction.interface';
 import { prototype } from 'events';
+import { HobbyInterface } from '../hobby/hobby.interface';
 
 @Component({
   selector: 'app-tools-box',
@@ -14,7 +15,7 @@ import { prototype } from 'events';
 })
 export class ToolsBox {
   @Input() enable_order:Boolean = false
-  @Input() arr_elements: ExperienceInterface[] | IntroductionInterface | null = null;
+  @Input() arr_elements: ExperienceInterface[] | IntroductionInterface | HobbyInterface | null = null;
   @Input() name_download: string = 'default'
   @Output('arrChange') changed = new EventEmitter<ExperienceInterface[] |IntroductionInterface>();
   flag_order: boolean = true;
