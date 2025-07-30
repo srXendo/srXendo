@@ -76,11 +76,9 @@
     transform: translate(-50%, -50%);
     color: white;
     font-weight: bold;
-
     z-index: 1;
     pointer-events: none;
 }
-
 
 code {
   font-size: 0.5em;

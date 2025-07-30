@@ -1,5 +1,5 @@
 <div class="wrapper_main">
-    <app-tools-box [arr_elements]="[]" (arrChange)="change_arr($event)" [name_download]="'contact'"></app-tools-box>
+    <app-tools-box [arr_elements]="contact" (arrChange)="change_arr($event)" [name_download]="'contact'"></app-tools-box>
     <div class="img-btn-bar">
         <div class="wrapper-img-btn"[class]="{
             'wrapper-img-btn-active': false,
@@ -7,13 +7,12 @@
         <div
             class="img-btn-base"
             [class]="{
-            'img-btn': true,
+            'img-btn': false,
             'img-btn-active': false,
             }"
             [style]="getImgBoxStyle('linkedIn_2021.svg')"
-            href="www.linkedin.com/in/david-m-8483a4299"
+            (click)="open_url('linkedin_link')"
         >
-            
         </div>
             <span class="overlay-text"></span>
         </div>
@@ -23,13 +22,12 @@
         <div
             class="img-btn-base"
             [class]="{
-            'img-btn': true,
+            'img-btn': false,
             'img-btn-active': false,
             }"
             [style]="getImgBoxStyle('github_2013.svg')"
-            routerLink="/matchmaker"
+            (click)="open_url('github_link')"
         >
-            
         </div>
         <span class="overlay-text"></span>
         </div>

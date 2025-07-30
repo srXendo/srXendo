@@ -1,8 +1,6 @@
 export interface ContactInterface {
-    title_contact: string;
-    arr_contacts: RowContactInterface[]
+    linkedin_link: string;
+
+    github_link: string;
 }
-export interface RowContactInterface {
-    icon_rc: string;
-    url_link: string;
-}
+
